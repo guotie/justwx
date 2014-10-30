@@ -2,6 +2,7 @@ package main
 
 import (
 	"flag"
+	"fmt"
 	"github.com/guotie/config"
 	"github.com/guotie/deferinit"
 	"github.com/smtc/glog"
@@ -12,6 +13,7 @@ import (
 )
 
 var (
+	_        = fmt.Printf
 	configFn = flag.String("config", "./config.json", "config file path")
 	wxAuth   *wxutils.WXAuth
 )
@@ -62,6 +64,8 @@ func indexHandler(c web.C, w http.ResponseWriter, req *http.Request) {
 	timestamp = c.URLParams["timestamp"]
 	nonce = c.URLParams["nonce"]
 	echostr = c.URLParams["echostr"]
+
+	fmt.Println(signature, timestamp, nonce, echostr)
 
 	err = wxAuth.CheckSignature(signature, timestamp, nonce)
 	if err != nil {
