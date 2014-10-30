@@ -51,7 +51,7 @@ func weixinMux() *web.Mux {
 	return mux
 }
 
-func indexHandler(c web.C, w http.ResponseWriter, req *http.Request) {
+func indexHandler(w http.ResponseWriter, req *http.Request) {
 	var (
 		err       error
 		signature string
@@ -60,12 +60,13 @@ func indexHandler(c web.C, w http.ResponseWriter, req *http.Request) {
 		echostr   string
 	)
 
-	signature = c.URLParams["signature"]
-	timestamp = c.URLParams["timestamp"]
-	nonce = c.URLParams["nonce"]
-	echostr = c.URLParams["echostr"]
+	req.ParseForm()
+	signature = req.Form.Get("signature")
+	timestamp = req.Form.Get("timestamp")
+	nonce = req.Form.Get("nonce")
+	echostr = req.Form.Get("echostr")
 
-	fmt.Println(signature, timestamp, nonce, echostr)
+	fmt.Println(signature, timestamp, nonce, "echostr=", echostr)
 
 	err = wxAuth.CheckSignature(signature, timestamp, nonce)
 	if err != nil {
