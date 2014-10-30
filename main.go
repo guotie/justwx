@@ -27,6 +27,8 @@ func main() {
 	wxAuth = wxutils.CreateWXAuth(config.GetStringDefault("token", "weixin-token"))
 
 	run()
+
+	glog.Close()
 }
 
 func run() {
