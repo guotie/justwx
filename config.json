@@ -1,0 +1,9 @@
+{
+	"token": "KHOpv0C0mFt9xfb3AlReUzGb",
+	"securekey":"e9EfuAVpK1OuBKHOpv0C0mFt9xfb3AlReUzGbetkXBtb2vkz",
+	"dbtype":"mysql",
+	"dbname":"mcmp",
+	"dbuser":"root",
+	"dbpass":"guotie",
+	"env":"dev"
+}
